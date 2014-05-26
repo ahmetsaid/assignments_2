@@ -1,0 +1,62 @@
+PImage richieback,richiefront,enterback;
+PFont richieFont;
+PShape enter;
+int sec = 0;
+int i = 0;
+float scale;
+
+
+void setup() {
+ size(1500,1125,P2D);
+ background(0);
+ frameRate(30);
+ colorMode(HSB, 100);
+ enter = loadShape("ENTERtext.svg");
+ enter.disableStyle();
+ 
+//richieback = loadImage("richieImage.png");
+richiefront = loadImage("richieImage.png");
+enterback = loadImage("enterBack.jpg");
+
+richieFont = loadFont("AmorSansPro-48.vlw");
+textFont(richieFont,1);
+
+}
+
+int enterAlpha = 0;
+float fadeIn=100;
+int sayac = 0;
+
+void draw() {
+  
+tint(random(255)+mouseY/8,255);
+image(enterback,0,0);
+    fill(255,0,255,enterAlpha);
+    shape(enter,CENTER,CENTER);  
+    
+    if (sayac == 0){
+    if (enterAlpha<100) {
+      enterAlpha=enterAlpha+1;
+      if (enterAlpha == 100)   {    sayac = 1;       }
+      }     
+    }
+   
+   println(sayac);
+  if (sayac == 1){
+    if (enterAlpha>0) {
+      enterAlpha=enterAlpha-1;
+      if (enterAlpha == 0)   {   sayac = 0;       }
+      }     
+    }
+println(enterAlpha);
+
+
+//text("ENTER", width/2, height/2);
+tint(100+random(200),0,255,mouseX/12);
+image(richiefront,0,0);
+fadeIn=fadeIn -.4 ;
+fill(0,0,0,fadeIn);
+rect(-0 ,0,2000,2000);
+
+
+}
